@@ -24,4 +24,5 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('residentes','ResidentesController');
 	Route::resource('mensualidades','MensualidadesController');
 	Route::resource('inmuebles','InmueblesController');
+	Route::resource('estacionamientos','EstacionamientosController');
 });

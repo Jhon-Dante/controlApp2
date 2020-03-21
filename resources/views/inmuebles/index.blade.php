@@ -44,7 +44,7 @@
                                 <td>{{$key->status}}</td>
                                 <td>
                                     
-                                    <a href="#" data-toggle="modal" data-target="#editarInmueble" class="btn btn-warning btn-sm" onclick="Editar()">Editar</a>
+                                    <a href="#" data-toggle="modal" data-target="#editarInmueble" class="btn btn-warning btn-sm" onclick="Editar('{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">Editar</a>
 
                                     <a href="#" data-toggle="modal" data-target="#eliminarInmueble" class="btn btn-danger btn-sm" onclick="Eliminar('{{$key->id}}')">Eliminar</a>
                                 </td>
@@ -101,7 +101,7 @@
         </div>
     </form>
 
-    <form method="PUT" action="{{ route('inmuebles.update',1033)}}">
+    {!! Form::open(['route' => ['inmuebles.update',1033], 'method' => 'PUT']) !!}
         <div class="modal fade" id="editarInmueble" role="dialog">
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
@@ -115,14 +115,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" id="idem_e" name="idem" placeholder="Idem del Inmueble" class="form-control">
+                                    <input type="text" id="idem_e" name="idem_e" placeholder="Idem del Inmueble" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <select type="text" id="tipo_e" name="tipo" placeholder="Status de inmueble" class="form-control">
+                                    <select type="text" id="tipo_e" name="tipo_e" placeholder="Status de inmueble" class="form-control">
                                         <option value="Casa">Casa</option>
                                         <option value="Apartamento">Apartamento</option>
                                         <option value="Anexo">Anexo</option>
@@ -135,7 +135,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <select type="text" id="status_e" name="status" placeholder="Status del Inmueble" class="form-control">
+                                    <select type="text" id="status_e" name="status_e" placeholder="Status del Inmueble" class="form-control">
                                         <option value="Disponible">Disponible</option>
                                         <option value="No Disponible">No Disponible</option>
                                     </select>
@@ -144,7 +144,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="text" name="id" id="id_e">
+                        <input type="text" name="id_e" id="id_e">
                         <button type="submit" class="btn btn-success" >Editar</button>
                     </div>
                 </div>
@@ -152,7 +152,7 @@
         </div>
     </form>
 
-     {!! Form::open(['route' => ['inmuebles.destroy',1033], 'method' => 'DELETE']) !!}
+    {!! Form::open(['route' => ['inmuebles.destroy',1033], 'method' => 'DELETE']) !!}
         <div class="modal fade" id="eliminarInmueble" role="dialog">
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
@@ -172,17 +172,17 @@
                     </div>
                 </div>
             </div>
-        {!! Form::close() !!}
-    </form>
+        </div>
+    {!! Form::close() !!}
     
 
 @endsection
 
     <script type="text/javascript">
-        function Editar(id_e, idem, tipo, status) {
-            alert('asdasd');
+        function Editar(id, idem, tipo, status) {
+            // alert('asdasd');
             $('#id_e').val(id);
-            $('#idem_e'.val(idem);
+            $('#idem_e').val(idem);
             $('#tipo_e').val(tipo);
             $('#status_e').val(status);
         }

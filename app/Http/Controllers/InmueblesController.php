@@ -87,18 +87,19 @@ class InmueblesController extends Controller
 	*/
 	public function update(Request $request, $id_inmueble)
 	{
-		$buscar=Inmuebles::where('idem',$request->idem)->get();
+		// dd($request->all());
+		$buscar=Inmuebles::where('idem',$request->idem_e)->where('id','<>',$request->id_e)->get();
 		if (count($buscar)>0) {
 			flash('Ya hay un inmueble registrado con ese idem!')->warning()->important();
 			return redirect()->back();
 		} else {
-			$inmueble=Inmuebles::find($request->id);
-			$inmueble->idem=$request->idem;
-			$inmueble->tipo=$request->tipo;
-			$inmueble->status=$request->status;
+			$inmueble=Inmuebles::find($request->id_e);
+			$inmueble->idem=$request->idem_e;
+			$inmueble->tipo=$request->tipo_e;
+			$inmueble->status=$request->status_e;
 			$inmueble->save();
 
-			flash('Inmueble actualizado')->sucess()->important();
+			flash('Inmueble actualizado')->success()->important();
 			return redirect()->to('inmuebles');
 		}
 	}
@@ -116,7 +117,7 @@ class InmueblesController extends Controller
 		$eliminar=Inmuebles::find($request->id_inmueble);
 		$eliminar->delete();
 
-		flash('Inmueble eliminado')->sucess()->important();
+		flash('Inmueble eliminado')->success()->important();
 		return redirect()->to('inmuebles');
 
 	}
