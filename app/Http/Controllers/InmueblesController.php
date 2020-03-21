@@ -7,109 +7,117 @@ use Illuminate\Http\Request;
 
 class InmueblesController extends Controller
 {
-/**
-* Display a listing of the resource.
-*
-* @return \Illuminate\Http\Response
-*/
-public function index()
-{
-$inmmuebles=Inmuebles::all();
+	/**
+	* Display a listing of the resource.
+	*
+	* @return \Illuminate\Http\Response
+	*/
+	public function index()
+	{
+		$inmuebles=Inmuebles::all();
 
-return view('inmmuebles.index',compact('inmmuebles'));
-}
+		return view('inmuebles.index',compact('inmuebles'));
+	}
 
-/**
-* Show the form for creating a new resource.
-*
-* @return \Illuminate\Http\Response
-*/
-public function create()
-{
-return view('inmmuebles.create');
-}
+	/**
+	* Show the form for creating a new resource.
+	*
+	* @return \Illuminate\Http\Response
+	*/
+	public function create()
+	{
+	
+	}
 
-/**
-* Store a newly created resource in storage.
-*
-* @param \Illuminate\Http\Request $request
+	/**
+	* Store a newly created resource in storage.
+	*
+	* @param \Illuminate\Http\Request $request
 
-* @return \Illuminate\Http\Response
-*/
-public function store(Request $request)
-{
-$buscar=Inmuebles::where('idem',$request->idem)->get();
-if (count($buscar)>0) {
-dd('idem ya registrado');
-return redirect()->back();
-} else {
-$inmueble=new Inmuebles();
-$inmueble->idem=$request->idem;
-$inmueble->tipo=$request->tipo;
-$inmueble->status=$request->status;
-$inmueble->save();
-return redirect()->to('inmuebles');
-}
+	* @return \Illuminate\Http\Response
+	*/
+	public function store(Request $request)
+	{
+		// dd($request->all());
+		$buscar=Inmuebles::where('idem',$request->idem)->get();
+		if (count($buscar)>0) {
+			flash('idem ya registrado')->warning()->important();
+			return redirect()->back();
+		} else {
+			$inmueble=new Inmuebles();
+			$inmueble->idem=$request->idem;
+			$inmueble->tipo=$request->tipo;
+			$inmueble->status='Disponible';
+			$inmueble->save();
+			flash('Inmueble registrado con éxito!')->important();
+			return redirect()->to('inmuebles');
+		}
 
-}
+	}
 
-/**
-* Display the specified resource.
-*
-* @param \App\Inmuebles $inmuebles
-* @return \Illuminate\Http\Response
-*/
-public function show(Inmuebles $inmuebles)
-{
-//
-}
+	/**
+	* Display the specified resource.
+	*
+	* @param \App\Inmuebles $inmuebles
+	* @return \Illuminate\Http\Response
+	*/
+	public function show(Inmuebles $inmuebles)
+	{
+	
+	}
 
-/**
-* Show the form for editing the specified resource.
-*
-* @param \App\Inmuebles $inmuebles
-* @return \Illuminate\Http\Response
+	/**
+	* Show the form for editing the specified resource.
+	*
+	* @param \App\Inmuebles $inmuebles
+	* @return \Illuminate\Http\Response
 
-*/
-public function edit($id_inmueble)
-{
-$inmueble=Inmuebles::find($id_inmueble);
+	*/
+	public function edit($id_inmueble)
+	{
+	
+	}
 
-return view('inmuebles.edit',compact('inmueble'));
-}
+	/**
+	* Update the specified resource in storage.
+	*
+	* @param \Illuminate\Http\Request $request
+	* @param \App\Inmuebles $inmuebles
+	* @return \Illuminate\Http\Response
+	*/
+	public function update(Request $request, $id_inmueble)
+	{
+		$buscar=Inmuebles::where('idem',$request->idem)->get();
+		if (count($buscar)>0) {
+			flash('Ya hay un inmueble registrado con ese idem!')->warning()->important();
+			return redirect()->back();
+		} else {
+			$inmueble=Inmuebles::find($request->id);
+			$inmueble->idem=$request->idem;
+			$inmueble->tipo=$request->tipo;
+			$inmueble->status=$request->status;
+			$inmueble->save();
 
-/**
-* Update the specified resource in storage.
-*
-* @param \Illuminate\Http\Request $request
-* @param \App\Inmuebles $inmuebles
-* @return \Illuminate\Http\Response
-*/
-public function update(Request $request, $id_inmueble)
-{
-$buscar=Inmuebles::where('idem',$request->idem)->where('id','<>',$id_inmueble)->get();
-if (count($buscar)>0) {
-dd('idem ya registrado');
-return redirect()->back();
-} else {
-$inmueble=new Inmuebles();
-$inmueble->idem=$request->idem;
-$inmueble->tipo=$request->tipo;
-$inmueble->status=$request->status;
-$inmueble->save();
-return redirect()->to('inmuebles');
-}
-}
+			flash('Inmueble actualizado')->sucess()->important();
+			return redirect()->to('inmuebles');
+		}
+	}
 
-/**
-* Remove the specified resource from storage.
-*
-* @param \App\Inmuebles $inmuebles
+	/**
+	* Remove the specified resource from storage.
+	*
+	* @param \App\Inmuebles $inmuebles
 
-* @return \Illuminate\Http\Response
-*/
-public function destroy(Inmuebles $inmuebles)
-{
-//
-}
+	* @return \Illuminate\Http\Response
+	*/
+	public function destroy(Request $request, $id)
+	{
+		dd($request->all());
+		$eliminar=Inmuebles::find($request->id);
+		$eliminar->delete();
+
+		flash('Inmueble eliminado')->sucess()->important();
+		return redirect()->to('inmuebles');
+
+	}
 }

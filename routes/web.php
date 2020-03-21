@@ -22,4 +22,6 @@ Auth::routes();
 Route::group(['middleware' => ['web']], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('residentes','ResidentesController');
+	Route::resource('mensualidades','MensualidadesController');
+	Route::resource('inmuebles','InmueblesController');
 });

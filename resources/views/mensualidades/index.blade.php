@@ -8,6 +8,7 @@
                 <h1>Mensualidades</h1>
             </div>
         </div>
+        @include('flash::message')
         <div class="card">
             <div class="card-body">
                 

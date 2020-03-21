@@ -2,7 +2,7 @@
 
 <!-- <script scr="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script> -->
 <!--  -->
-<!-- <script src="{{ asset('assets/js/jquery.js') }}"></script> -->
+<script src="{{ asset('assets/js/jquery.js') }}"></script>
 
 <!-- Vendor js -->
 

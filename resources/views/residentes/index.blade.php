@@ -8,21 +8,22 @@
                 <h1>Residentes</h1>
             </div>
         </div>
+        @include('flash::message')
         <div class="card">
             <div class="card-body">
                 
                 <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12 offset-md-9">
-                        <a class="btn btn-success" data-toggle="modal" data-target="#crearResidente" style="border-radius: 30px; color: white;">
-                            <span> Nuevo Residente </span>
-                        </a>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 offset-md-9">
+                            <a class="btn btn-success" data-toggle="modal" data-target="#crearResidente" style="border-radius: 30px; color: white;">
+                                <span> Nuevo Residente </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
                     
-        
+            
             <div class="col-md-12">
                 <hr>
 

@@ -13,7 +13,7 @@
                 </a>
             </li>
 
-            <li>
+            <!-- <li>
                 <a href="#">
                     <i data-feather="bell"></i>
                     <span> Notificaciones </span>
@@ -25,7 +25,7 @@
                     <i data-feather="twitch"></i>
                     <span> Noticias </span>
                 </a>
-            </li>
+            </li> -->
 
             <li>
                 <a href="#">
@@ -42,7 +42,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ url('inmuebles') }}">
                     <i data-feather="map"></i>
                     <span> Inmuebles </span>
                 </a>
@@ -63,12 +63,12 @@
                 </a>
             </li>
 
-            <!-- <li>
-                <a href="#">
+            <li>
+                <a href="{{ url('mensualidades') }}">
                     <i data-feather="credit-card"></i>
-                    <span> Arriendos </span>
+                    <span> Mensualidades </span>
                 </a>
-            </li> -->
+            </li>
 
             <li>
                 <a href="#">

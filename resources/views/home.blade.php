@@ -123,7 +123,7 @@
                         <hr>
                     </div>
                     <div class="card-footer">
-                        <
+                        <input type="text" name="">
                     </div>
                 </div>
             </div>
