@@ -7,7 +7,7 @@
             <li class="menu-title">About</li>
 
             <li>
-                <a href="#">
+                <a href="{{ url('home') }}">
                     <i data-feather="home"></i>
                     <span> Escritorio </span>
                 </a>

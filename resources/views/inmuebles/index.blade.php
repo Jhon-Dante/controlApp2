@@ -26,36 +26,28 @@
             <div class="col-md-12">
                 <hr>
 
-                        <table class="table table-hover" id="myTable" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>Idem</th>
-                                    <th>Tipo</th>
-                                    <th>Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#editarInmueble" class="btn btn-warning btn-sm">Editar</a>
+                <table class="table table-hover" id="myTable" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Idem</th>
+                            <th>Tipo</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="#" data-toggle="modal" data-target="#editarInmueble" class="btn btn-warning btn-sm">Editar</a>
 
-                                            <a href="#" data-toggle="modal" data-target="#eliminarInmueble" class="btn btn-danger btn-sm">Eliminar</a>
-                                        </td>
-                                    </tr>
-                                @endforeach()
-                            </tbody>
-                        </table>
-
-                <!-- <cargaInfinita @infinite="infiniteHandler">
-                    <div slot="no-more">No hay mas datos</div>
-                    <div slot="spinner">Cargando...</div>
-                    <div slot="no-results">Sin Resultados</div>
-                </cargaInfinita> -->
-                <!-- <infinite-loading @infinite="infiniteHandler"></infinite-loading> -->
+                                    <a href="#" data-toggle="modal" data-target="#eliminarInmueble" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
 
             </div>
             
