@@ -25,4 +25,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('mensualidades','MensualidadesController');
 	Route::resource('inmuebles','InmueblesController');
 	Route::resource('estacionamientos','EstacionamientosController');
+	Route::resource('noticias', 'NoticiasController');
+	Route::get('eliminarNoticia/{id}','NoticiasController@destroy')->name('eliminarNoticia');
+	Route::resource('notificaciones','NotificacionesController');
+	Route::get('eliminarNotificacion/{id}','NotificacionesController@destroy')->name('eliminarNotificacion');
 });

@@ -34,21 +34,23 @@
                             <th>Mes</th>
                             <th>Año</th>
                             <th>Monto</th>
-                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        @foreach($mensualidades as $key)
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td>{{$key->inmuebles->idem}}</td>
+                                <td>{{$key->mes}}</td>
+                                <td>{{$key->anio}}</td>
+                                <td>{{$key->monto}}</td>
                                 <td>
-                                    <a href="#" data-toggle="modal" data-target="#editarMensualidad" class="btn btn-warning btn-sm">Editar</a>
+                                    <!-- <a href="#" data-toggle="modal" onclick="Editar('{{$key->id}}','{{$key->inmuebles->id}}','{{$key->mes}}','{{$key->anio}}','{{$key->monto}}')" data-target="#editarMensualidad" class="btn btn-warning btn-sm">Editar</a> -->
 
-                                    <a href="#" data-toggle="modal" data-target="#eliminarMensualidad" class="btn btn-danger btn-sm">Eliminar</a>
+                                    <a href="#" data-toggle="modal" onclick="Eliminar('{{$key->id}}')" data-target="#eliminarMensualidad" class="btn btn-danger btn-sm">Eliminar</a>
                                 </td>
                             </tr>
+                        @endforeach()
                     </tbody>
                 </table>
 
@@ -59,7 +61,8 @@
 
     </div>
 
-    <form method="POST">
+    <form action="{{ route('mensualidades.store') }}" method="POST" name="registrar_mensualidad" data-parsley-validate>
+        @csrf
         <div class="modal fade" id="crearMensualidad" role="dialog">
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
@@ -74,8 +77,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <select type="text" v-model="id_inmueble" name="id_inmueble" placeholder="Inmueble" class="form-control">
-                                        
+                                    <select type="text" name="id_inmueble" placeholder="Inmueble" class="form-control">
+                                        @foreach($inmuebles as $key)
+                                            <option value="{{$key->id}}"> {{$key->idem}} - {{$key->tipo}}</option>
+                                        @endforeach()
                                     </select>
                                 </div>
                             </div>
@@ -84,8 +89,20 @@
                          <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <select type="text" v-model="mes" name="mes" placeholder="Inmueble" class="form-control">
-                                        
+                                    <select type="text" multiple="multiple" name="mes[]" placeholder="Inmueble" class="form-control">
+                                        <option value="" disabled="" selected="">Especifique el mes</option>
+                                        <option value="1">Enero</option>
+                                        <option value="2">Febrero</option>
+                                        <option value="3">Marzo</option>
+                                        <option value="4">Abril</option>
+                                        <option value="5">Mayo</option>
+                                        <option value="6">Junio</option>
+                                        <option value="7">Julio</option>
+                                        <option value="8">Agosto</option>
+                                        <option value="9">Septiembre</option>
+                                        <option value="10">Octubre</option>
+                                        <option value="11">Noviembre</option>
+                                        <option value="12">Diciembre</option>
                                     </select>
                                 </div>
                             </div>
@@ -94,8 +111,12 @@
                          <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <select type="text" v-model="anio" name="anio" placeholder="Inmueble" class="form-control">
-                                        
+                                    <select type="text" name="anio" placeholder="Inmueble" class="form-control">
+                                        <option value="" disabled="" selected="">Especifique el año</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
                                     </select>
                                 </div>
                             </div>
@@ -118,7 +139,7 @@
         </div>
     </form>
 
-    <form method="POST">
+    <!-- <form method="POST">
         <div class="modal fade" id="editarMensualidad" role="dialog">
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
@@ -185,9 +206,9 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form> -->
 
-     <form method="POST">
+     {!! Form::open(['route' => ['mensualidades.destroy',1033], 'method' => 'DELETE']) !!}
         <div class="modal fade" id="eliminarMensualidad" role="dialog">
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
@@ -199,26 +220,33 @@
                     </div>
                     <div class="modal-body">
                         <h2>¡Atención!</h2>
-                        <h4>¿Está realmente seguro de querer eliminar este Mensualidad?</h4>
+                        <h4>¿Está realmente seguro de querer eliminar esta mensualidad?</h4>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="id">
+                        <input type="hidden" name="id" id="id">
                         <button type="submit" class="btn btn-success" >Eliminar</button>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    {!! Form::close() !!}
     
 
 @endsection
 
 <script type="text/javascript">
-    function editar(argument) {
-        // body...
-    }
+        // function Editar(id, id_inmueble, mes, año, monto) {
+        //     // alert('asdasd');
+        //     $('#id_e').val(id);
+        //     $('#idem_e').val(idem);
+        //     $('#tipo_e').val(tipo);
+        //     $('#status_e').val(status);
+        // }
+        
+    </script>
+    <script type="text/javascript">
 
-    function eliminar(argument) {
-        // body...
-    }
-</script>
+        function Eliminar(id) {
+            $('#id').val(id);
+        }
+    </script>
