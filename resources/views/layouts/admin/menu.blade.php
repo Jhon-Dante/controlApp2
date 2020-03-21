@@ -49,7 +49,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ url('residentes') }}">
                     <i data-feather="users"></i>
                     <span> Residentes </span>
                 </a>

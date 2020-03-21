@@ -63,10 +63,7 @@
     @include('layouts.admin.footer')
     <!-- Scripts -->
         @include('layouts.scripts')
-    @section('script')
-        <script src="{{ URL::asset('assets/libs/moment/moment.min.js') }}"></script>
-        <script src="{{ URL::asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-        <script src="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
+    @section('scripts')
     @endsection
 </body>
 </html>
