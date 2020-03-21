@@ -110,10 +110,10 @@ class InmueblesController extends Controller
 
 	* @return \Illuminate\Http\Response
 	*/
-	public function destroy(Request $request, $id)
+	public function destroy(Request $request)
 	{
-		dd($request->all());
-		$eliminar=Inmuebles::find($request->id);
+		//dd($request->all());
+		$eliminar=Inmuebles::find($request->id_inmueble);
 		$eliminar->delete();
 
 		flash('Inmueble eliminado')->sucess()->important();
